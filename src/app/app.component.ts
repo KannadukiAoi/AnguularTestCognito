@@ -26,6 +26,8 @@ export class AppComponent {
     IoTCoreEndpoint: 'a1pjk0rez75qhn.iot.us-east-1.amazonaws.com'
   }
 
+  private iotTopic: string = "testTopic";
+
 
   setCredentialToAwsApi() {
     console.log('setCredentialToAwsApi()');
@@ -55,18 +57,25 @@ export class AppComponent {
         let accessToken = result.getAccessToken().getJwtToken();
         let refreshToken = result.getRefreshToken();
 
-        let url = 'cognito-idp.' + this.config.Region + '.amazonaws.com/' + this.config.UserPoolId;
-
-        let logins: CognitoIdentity.LoginsMap = {};
-        logins[url] = idToken; //set the id token
-
-        let params: CognitoIdentityCredentials.CognitoIdentityOptions = {
-          IdentityPoolId: this.config.IdentityPoolId,
-          Logins: logins
-        };
-        AWS.config.credentials = new AWS.CognitoIdentityCredentials(params, {});
         AWS.config.region = this.config.Region;
+        
+        //type script way
+        //let url = 'cognito-idp.' + this.config.Region + '.amazonaws.com/' + this.config.UserPoolId;
+        // let logins: CognitoIdentity.LoginsMap = {};
+        // logins[url] = idToken; //set the id token
+        // let params: CognitoIdentityCredentials.CognitoIdentityOptions = {
+        //   IdentityPoolId: this.config.IdentityPoolId,
+        //   Logins: logins
+        // };        
+        // AWS.config.credentials = new AWS.CognitoIdentityCredentials(params, {});        
 
+        //javascript way
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+          IdentityPoolId: this.config.IdentityPoolId,
+          Logins: {
+            'cognito-idp.us-east-1.amazonaws.com/us-east-1_ijqm9ldVY': idToken
+          }         
+        });
       },
       onFailure: (err) => {
         console.log('OnFailure');
@@ -124,7 +133,7 @@ export class AppComponent {
     var iotdata = new AWS.IotData({ endpoint: this.config.IoTCoreEndpoint });
 
     iotdata.publish({
-      topic: 'testTopic',
+      topic: this.iotTopic,
       payload: '{"message":"Hello this is from Angular!"}',
       qos: 0
     }, (err, data) => {
