@@ -1,4 +1,7 @@
 # AnguularTestCognito
+Two dependency needed in this sourcecode:[aws-sdk] and [amazon-cognito-identity-js]
+
+example file is in /src/app/*
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
 
