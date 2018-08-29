@@ -21,7 +21,7 @@ export class AppComponent {
     AppID: '2pmgnaaqjrgojd73ckc4tep5lg',
     UserName: 'hiyuch@gmail.com',
     password: 'K10sk@2017',
-    IoTCorePolicyName: 'TestPoi',
+    IoTCorePolicyName: 'TestPoi', //The policy name in IoT Core
     IdentityId: 'us-east-1:883806e6-349c-479f-9089-0edd737ad867', // AWS　→　Service　→　Cognito → Mange Identity Pools →　{Identity name} → Identity browser → {Identity ID},    
     IoTCoreEndpoint: 'a1pjk0rez75qhn.iot.us-east-1.amazonaws.com'
   }
