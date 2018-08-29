@@ -1,4 +1,12 @@
 <!doctype html>
+
+<!-- https://github.com/aws/aws-amplify/issues/678 fix: conflict for angular6 and AWS api  -->
+<script>
+  if (global === undefined) {
+    var global = window;
+  }
+</script>
+<!-- https://github.com/aws/aws-amplify/issues/678 fix end-->
 <html lang="en">
 <head>
   <meta charset="utf-8">
