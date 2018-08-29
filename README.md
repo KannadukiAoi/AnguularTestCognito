@@ -1,5 +1,5 @@
 # AnguularTestCognito
-Two dependency nedded in this sourcecode.
+Two dependency needed in this sourcecode.
 aws-sdk
 amazon-cognito-identity-js
 
